@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Interactiva con Conteo</title>
+    <style>
+        /* Estilos generales para centrar el contenido y darle diseño */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .contenedor {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        /* Clase para ocultar las pantallas que no están activas */
+        .pantalla {
+            display: none;
+        }
+
+        /* Clase para mostrar la pantalla activa */
+        .pantalla.activa {
+            display: block;
+            animation: aparecer 0.5s ease-in-out;
+        }
+
+        /* Animación suave al cambiar de pantalla */
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* Cuadrícula para mostrar múltiples imágenes en el paso 3 */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Estilos para la fecha y el reloj de cuenta regresiva */
+        .fecha-hoy {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .contador-box {
+            background-color: #eef6ff;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .contador-box h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .tiempo {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .unidad {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .numero {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .etiqueta {
+            font-size: 0.8em;
+            color: #666;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <!-- PANTALLA 1: Saludo, Fecha y Cuenta Regresiva -->
+        <div id="paso-1" class="pantalla activa">
+            <h1>¡Hola! Bienvenido</h1>
+            
+            <!-- Fecha de hoy mostrada mediante JS -->
+            <div id="fecha-actual" class="fecha-hoy">Cargando fecha...</div>
+
+            <!-- Caja de la Cuenta Regresiva -->
+            <div class="contador-box">
+                <h3>Tiempo restante para el 19 de Agosto</h3>
+                <div class="tiempo" id="conteo">
+                    <div class="unidad">
+                        <span id="dias" class="numero">00</span>
+                        <span class="etiqueta">Días</span>
+                    </div>
+                    <div class="unidad">
+                        <span id="horas" class="numero">00</span>
+                        <span class="etiqueta">Horas</span>
+                    </div>
+                    <div class="unidad">
+                        <span id="minutos" class="numero">00</span>
+                        <span class="etiqueta">Min</span>
+                    </div>
+                    <div class="unidad">
+                        <span id="segundos" class="numero">00</span>
+                        <span class="etiqueta">Seg</span>
+                    </div>
+                </div>
+            </div>
+
+            <p>Por favor, haz clic abajo para continuar.</p>
+            <button onclick="cambiarPantalla(1, 2)">Siguiente</button>
+        </div>
+
+        <!-- PANTALLA 2: Mensaje y una imagen -->
+        <div id="paso-2" class="pantalla">
+            <h2>Un mensaje especial</h2>
+            <p>Aquí tienes el mensaje que solicitaste acompañado de una imagen de ejemplo.</p>
+            <img src="https://picsum.photos/500/250?random=1" alt="Imagen principal">
+            <br>
+            <button onclick="cambiarPantalla(2, 3)">Siguiente</button>
+        </div>
+
+        <!-- PANTALLA 3: Galería de imágenes -->
+        <div id="paso-3" class="pantalla">
+            <h2>Más Imágenes</h2>
+            <p>Aquí tienes la galería final.</p>
+            <div class="galeria">
+                <img src="https://picsum.photos/300/300?random=2" alt="Imagen galería 1">
+                <img src="https://picsum.photos/300/300?random=3" alt="Imagen galería 2">
+                <img src="https://picsum.photos/300/300?random=4" alt="Imagen galería 3">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- 1. Cambio de pantallas ---
+        function cambiarPantalla(pasoActual, pasoSiguiente) {
+            document.getElementById('paso-' + pasoActual).classList.remove('activa');
+            document.getElementById('paso-' + pasoSiguiente).classList.add('activa');
+        }
+
+        // --- 2. Mostrar la fecha actual ---
+        const hoy = new Date();
+        const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('fecha-actual').innerText = 'Hoy es ' + hoy.toLocaleDateString('es-ES', opcionesFecha);
+
+        // --- 3. Lógica del Conteo Regresivo ---
+        const anioActual = hoy.getFullYear();
+        // Establecer fecha objetivo: 19 de Agosto a las 00:00:00
+        let fechaObjetivo = new Date(`August 19, ${anioActual} 00:00:00`).getTime();
+
+        // Si la fecha de este año ya pasó, apunta al 19 de agosto del próximo año
+        if (hoy.getTime() > fechaObjetivo && hoy.getDate() !== 19) {
+            fechaObjetivo = new Date(`August 19, ${anioActual + 1} 00:00:00`).getTime();
+        }
+
+        function actualizarContador() {
+            const ahora = new Date().getTime();
+            const diferencia = fechaObjetivo - ahora;
+
+            // Si se alcanza la fecha
+            if (diferencia <= 0) {
+                document.getElementById('conteo').innerHTML = "<h2 style='color:#007bff; margin:0;'>¡Llegó el 19 de Agosto!</h2>";
+                return;
+            }
+
+            // Cálculos de días, horas, minutos y segundos
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            // Inserción en el HTML con formato de 2 dígitos (ej: 05 en vez de 5)
+            document.getElementById('dias').innerText = String(dias).padStart(2, '0');
+            document.getElementById('horas').innerText = String(horas).padStart(2, '0');
+            document.getElementById('minutos').innerText = String(minutos).padStart(2, '0');
+            document.getElementById('segundos').innerText = String(segundos).padStart(2, '0');
+        }
+
+        // Actualizar el contador cada segundo (1000 ms)
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+    </script>
+
+</body>
+</html>
