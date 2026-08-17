@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Interactiva con Conteo</title>
     <style>
-        /* Estilos generales para centrar el contenido y darle diseño */
+        /* Estilos generales */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f9;
@@ -15,29 +15,30 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
+            padding: 20px 0;
+            box-sizing: border-box;
         }
 
         .contenedor {
             background: #ffffff;
-            padding: 40px;
+            padding: 40px 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 90%;
         }
 
-        /* Clase para ocultar las pantallas que no están activas */
+        /* Ocultar pantallas inactivas */
         .pantalla {
             display: none;
         }
 
-        /* Clase para mostrar la pantalla activa */
+        /* Mostrar pantalla activa con animación */
         .pantalla.activa {
             display: block;
             animation: aparecer 0.5s ease-in-out;
         }
 
-        /* Animación suave al cambiar de pantalla */
         @keyframes aparecer {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -63,10 +64,9 @@
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            margin-top: 20px;
         }
 
-        /* Cuadrícula para mostrar múltiples imágenes en el paso 3 */
+        /* Galería Paso 3 */
         .galeria {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -74,7 +74,7 @@
             margin-top: 20px;
         }
 
-        /* Estilos para la fecha y el reloj de cuenta regresiva */
+        /* Reloj de cuenta regresiva */
         .fecha-hoy {
             font-size: 1.1em;
             color: #555;
@@ -118,6 +118,72 @@
             color: #666;
             text-transform: uppercase;
         }
+
+        /* --- ESTILOS DE LA LÍNEA DE TIEMPO (PASO 2) --- */
+        .linea-tiempo {
+            position: relative;
+            max-width: 480px;
+            margin: 30px auto 10px;
+            padding-left: 25px;
+            text-align: left;
+            border-left: 3px solid #007bff; /* Trazo vertical conector */
+        }
+
+        .item-tiempo {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .item-tiempo:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Punto / Nodo sobre el trazo conector */
+        .item-tiempo::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 15px;
+            width: 12px;
+            height: 12px;
+            background-color: #007bff;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #007bff;
+        }
+
+        .contenido-tiempo {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .contenido-tiempo .fecha {
+            display: inline-block;
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #007bff;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contenido-tiempo img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin: 6px 0 10px;
+        }
+
+        .contenido-tiempo p {
+            margin: 0;
+            color: #444;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -128,10 +194,8 @@
         <div id="paso-1" class="pantalla activa">
             <h1>¡Hola! Bienvenido</h1>
             
-            <!-- Fecha de hoy mostrada mediante JS -->
             <div id="fecha-actual" class="fecha-hoy">Cargando fecha...</div>
 
-            <!-- Caja de la Cuenta Regresiva -->
             <div class="contador-box">
                 <h3>Tiempo restante para el 19 de Agosto</h3>
                 <div class="tiempo" id="conteo">
@@ -158,12 +222,58 @@
             <button onclick="cambiarPantalla(1, 2)">Siguiente</button>
         </div>
 
-        <!-- PANTALLA 2: Mensaje y una imagen -->
+        <!-- PANTALLA 2: Línea de Tiempo Conectada -->
         <div id="paso-2" class="pantalla">
-            <h2>Un mensaje especial</h2>
-            <p>Aquí tienes el mensaje que solicitaste acompañado de una imagen de ejemplo.</p>
-            <img src="luna.jpeg" alt="Luna">
-            <br>
+            <h2>Nuestra Historia</h2>
+            <p>Un recorrido por nuestras fechas y recuerdos especiales.</p>
+
+            <div class="linea-tiempo">
+                <!-- Momento 1 -->
+                <div class="item-tiempo">
+                    <div class="contenido-tiempo">
+                        <span class="fecha">15 de Enero, 2024</span>
+                        <img src="luna.jpeg" alt="Luna">
+                        <p>El comienzo de un camino especial compartido bajo la luna.</p>
+                    </div>
+                </div>
+
+                <!-- Momento 2 -->
+                <div class="item-tiempo">
+                    <div class="contenido-tiempo">
+                        <span class="fecha">28 de Marzo, 2024</span>
+                        <img src="casa.jpeg" alt="Casa">
+                        <p>Un nuevo espacio lleno de recuerdos y momentos inolvidables.</p>
+                    </div>
+                </div>
+
+                <!-- Momento 3 -->
+                <div class="item-tiempo">
+                    <div class="contenido-tiempo">
+                        <span class="fecha">10 de Junio, 2024</span>
+                        <img src="carro.jpeg" alt="Carro">
+                        <p>Aventuras y viajes que marcaron un antes y un después.</p>
+                    </div>
+                </div>
+
+                <!-- Momento 4 -->
+                <div class="item-tiempo">
+                    <div class="contenido-tiempo">
+                        <span class="fecha">05 de Septiembre, 2024</span>
+                        <img src="barranquilla2.jpeg" alt="Barranquilla">
+                        <p>Días de sol, alegría y momentos únicos e irrepetibles.</p>
+                    </div>
+                </div>
+
+                <!-- Momento 5 -->
+                <div class="item-tiempo">
+                    <div class="contenido-tiempo">
+                        <span class="fecha">24 de Diciembre, 2024</span>
+                        <img src="luna.jpeg" alt="Recuerdo">
+                        <p>Cerrando el año celebrando todo lo aprendido y compartido.</p>
+                    </div>
+                </div>
+            </div>
+
             <button onclick="cambiarPantalla(2, 3)">Siguiente</button>
         </div>
 
@@ -181,23 +291,22 @@
     </div>
 
     <script>
-        // --- 1. Cambio de pantallas ---
+        // 1. Cambio de pantallas
         function cambiarPantalla(pasoActual, pasoSiguiente) {
             document.getElementById('paso-' + pasoActual).classList.remove('activa');
             document.getElementById('paso-' + pasoSiguiente).classList.add('activa');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 2. Mostrar la fecha actual ---
+        // 2. Mostrar la fecha actual
         const hoy = new Date();
         const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('fecha-actual').innerText = 'Hoy es ' + hoy.toLocaleDateString('es-ES', opcionesFecha);
 
-        // --- 3. Lógica del Conteo Regresivo ---
+        // 3. Lógica del Conteo Regresivo
         const anioActual = hoy.getFullYear();
-        // Establecer fecha objetivo: 19 de Agosto a las 00:00:00
         let fechaObjetivo = new Date(`August 19, ${anioActual} 00:00:00`).getTime();
 
-        // Si la fecha de este año ya pasó, apunta al 19 de agosto del próximo año
         if (hoy.getTime() > fechaObjetivo && hoy.getDate() !== 19) {
             fechaObjetivo = new Date(`August 19, ${anioActual + 1} 00:00:00`).getTime();
         }
@@ -206,26 +315,22 @@
             const ahora = new Date().getTime();
             const diferencia = fechaObjetivo - ahora;
 
-            // Si se alcanza la fecha
             if (diferencia <= 0) {
                 document.getElementById('conteo').innerHTML = "<h2 style='color:#007bff; margin:0;'>¡Llegó el 19 de Agosto!</h2>";
                 return;
             }
 
-            // Cálculos de días, horas, minutos y segundos
             const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
             const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
             const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-            // Inserción en el HTML con formato de 2 dígitos (ej: 05 en vez de 5)
             document.getElementById('dias').innerText = String(dias).padStart(2, '0');
             document.getElementById('horas').innerText = String(horas).padStart(2, '0');
             document.getElementById('minutos').innerText = String(minutos).padStart(2, '0');
             document.getElementById('segundos').innerText = String(segundos).padStart(2, '0');
         }
 
-        // Actualizar el contador cada segundo (1000 ms)
         actualizarContador();
         setInterval(actualizarContador, 1000);
     </script>
