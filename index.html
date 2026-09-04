@@ -1,28 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IsaBela - Nuestra Historia</title>
+    <title>IsaBela - Nuestra Historia de Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* --- ESTILOS GENERALES Y FONDO DINÁMICO --- */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             text-align: center;
-            padding: 20px 0;
+            padding: 30px 10px;
             box-sizing: border-box;
             position: relative;
             
-            /* Fondo de gradiente animado */
-            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+            /* Fondo de gradiente animado más profundo y moderno */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
-            animation: moverGradiente 15s ease infinite;
+            animation: moverGradiente 18s ease infinite;
         }
 
         @keyframes moverGradiente {
@@ -32,26 +32,28 @@
         }
 
         .contenedor {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            max-width: 600px;
+            /* Efecto Glassmorphism moderno */
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 45px 35px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 650px;
             width: 90%;
-            /* Transición suave al cambiar de tamaño */
-            transition: max-width 0.6s ease, width 0.6s ease;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* --- NUEVAS CLASES: ANCHO Y MARCA DE AGUA --- */
         .contenedor-ampliado {
-            max-width: 95% !important;
-            width: 95% !important;
+            max-width: 92% !important;
+            width: 92% !important;
         }
 
         .fondo-marca-agua {
             position: relative;
             z-index: 1;
-            overflow: hidden; /* Evita que la imagen se salga de los bordes redondeados */
+            overflow: hidden;
         }
 
         .fondo-marca-agua::before {
@@ -61,8 +63,14 @@
             background-image: url('luna.jpeg');
             background-size: cover;
             background-position: center;
-            opacity: 0.2; /* Opacidad baja para efecto marca de agua */
+            opacity: 0.12;
             z-index: -1;
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+            font-weight: 600;
         }
 
         /* Ocultar pantallas inactivas */
@@ -70,81 +78,87 @@
             display: none;
         }
 
-        /* Mostrar pantalla activa con animación */
         .pantalla.activa {
             display: block;
-            animation: aparecer 0.5s ease-in-out;
+            animation: aparecer 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes aparecer {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(15px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         button {
-            background-color: #007bff;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 14px 28px;
             font-size: 16px;
-            border-radius: 6px;
+            font-weight: 500;
+            border-radius: 50px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 25px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+            box-shadow: 0 6px 20px rgba(255, 117, 140, 0.4);
+            font-family: 'Poppins', sans-serif;
         }
 
         button:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 117, 140, 0.6);
+            filter: brightness(1.05);
         }
 
         /* --- ESTILOS DEL LOGIN --- */
         .input-login {
             display: block;
-            width: 80%;
+            width: 85%;
             margin: 15px auto;
-            padding: 12px;
+            padding: 14px 18px;
             font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
             box-sizing: border-box;
             outline: none;
+            transition: all 0.3s ease;
         }
 
         .input-login:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            border-color: #ff758c;
+            box-shadow: 0 0 10px rgba(255, 117, 140, 0.3);
+            background: #fff;
         }
 
         .mensaje-error {
-            color: #d9534f;
+            color: #e74c3c;
             margin-top: 15px;
             font-weight: 500;
             font-size: 0.95em;
-            min-height: 20px; /* Para que el texto no salte al aparecer */
+            min-height: 20px;
         }
 
-        /* Reloj de cuenta regresiva */
+        /* Reloj de cuenta regresiva moderno */
         .fecha-hoy {
-            font-size: 1.1em;
+            font-size: 1.05em;
             color: #555;
-            margin-bottom: 20px;
-            font-weight: 500;
+            margin-bottom: 25px;
+            font-weight: 400;
         }
 
         .contador-box {
-            background-color: rgba(238, 246, 255, 0.85); /* Un poco de transparencia por la marca de agua */
-            border: 2px solid #007bff;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 117, 140, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
         }
 
         .contador-box h3 {
             margin-top: 0;
-            color: #007bff;
+            color: #d63384;
+            font-size: 1.1em;
         }
 
         .tiempo {
@@ -157,28 +171,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            min-width: 50px;
         }
 
         .numero {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #222;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #2c3e50;
         }
 
         .etiqueta {
-            font-size: 0.8em;
-            color: #666;
+            font-size: 0.75em;
+            color: #888;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* --- ESTILOS DE LA LÍNEA DE TIEMPO (PASO 2) --- */
+        /* --- LÍNEA DE TIEMPO MODERNA --- */
         .linea-tiempo {
             position: relative;
-            max-width: 480px;
-            margin: 30px auto 10px;
-            padding-left: 25px;
+            max-width: 540px;
+            margin: 30px auto;
+            padding-left: 30px;
             text-align: left;
-            border-left: 3px solid #007bff;
+            border-left: 3px solid #ff758c;
         }
 
         .item-tiempo {
@@ -193,98 +213,106 @@
         .item-tiempo::before {
             content: '';
             position: absolute;
-            left: -33px;
-            top: 15px;
-            width: 12px;
-            height: 12px;
-            background-color: #007bff;
-            border: 3px solid #ffffff;
+            left: -37.5px;
+            top: 12px;
+            width: 14px;
+            height: 14px;
+            background-color: #ff758c;
+            border: 4px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 0 0 2px #007bff;
+            box-shadow: 0 0 0 3px rgba(255, 117, 140, 0.3);
         }
 
         .contenido-tiempo {
-            background: #f8f9fa;
-            padding: 16px;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+        }
+
+        .contenido-tiempo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .contenido-tiempo .fecha {
             display: inline-block;
             font-size: 0.85em;
-            font-weight: 700;
-            color: #007bff;
-            margin-bottom: 8px;
+            font-weight: 600;
+            color: #ff758c;
+            margin-bottom: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .contenido-tiempo img {
             width: 100%;
-            height: 220px;
+            height: 240px;
             object-fit: cover;
             background: #ffffff;
-            padding: 10px 10px 40px 10px; 
+            padding: 8px 8px 35px 8px; 
             box-sizing: border-box; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            border-radius: 4px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            border-radius: 8px;
             margin: 10px 0 15px;
             display: block;
             cursor: pointer;
-            transform: rotate(-2deg); 
+            transform: rotate(-1.5deg); 
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
 
         .item-tiempo:nth-child(even) .contenido-tiempo img {
-            transform: rotate(2deg);
+            transform: rotate(1.5deg);
         }
 
         .contenido-tiempo img:hover {
-            transform: scale(1.05) rotate(0deg); 
-            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+            transform: scale(1.03) rotate(0deg); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
             z-index: 10;
             position: relative;
         }
 
         .contenido-tiempo p {
             margin: 0;
-            color: #444;
+            color: #555;
             font-size: 0.95em;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        /* --- ESTILOS PARA LA GALERÍA (PASO 3) CON EFECTO GLOW --- */
+        /* --- GALERÍA MODERNA TIPO GRID --- */
         .galeria {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .galeria img {
             width: 100%;
-            height: 140px;
+            height: 130px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            border: 2px solid transparent;
-            filter: grayscale(40%); 
-            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            filter: grayscale(20%); 
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
         }
 
         .galeria img:hover {
             filter: grayscale(0%); 
-            border-color: #007bff;
-            box-shadow: 0 0 15px rgba(0, 123, 255, 0.6); 
-            transform: translateY(-5px); 
+            border-color: #ff758c;
+            box-shadow: 0 0 20px rgba(255, 117, 140, 0.7); 
+            transform: scale(1.06) translateY(-4px); 
+            z-index: 5;
         }
 
-        /* --- CLASES PARA LA ANIMACIÓN AL HACER SCROLL --- */
+        /* --- ANIMACIÓN SCROLL --- */
         .oculto-scroll {
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
@@ -293,7 +321,7 @@
             transform: translateY(0);
         }
 
-        /* --- ESTILOS PARA LA VISTA MODAL (LIGHTBOX) --- */
+        /* --- VISTA MODAL (LIGHTBOX) --- */
         .modal {
             display: none;
             position: fixed;
@@ -302,7 +330,8 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
             opacity: 0;
@@ -317,13 +346,13 @@
         }
 
         .modal-contenido {
-            max-width: 90vw;
-            max-height: 90vh;
+            max-width: 85vw;
+            max-height: 85vh;
             object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
-            transform: scale(0.7);
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .modal.activa .modal-contenido {
@@ -332,17 +361,29 @@
 
         .cerrar-modal {
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 25px;
+            right: 35px;
             color: #ffffff;
-            font-size: 40px;
-            font-weight: bold;
+            font-size: 45px;
+            font-weight: 300;
             cursor: pointer;
             transition: color 0.3s;
         }
 
         .cerrar-modal:hover {
-            color: #ff4d4d;
+            color: #ff758c;
+        }
+
+        .btn-secundario {
+            background: rgba(0,0,0,0.06);
+            color: #444;
+            box-shadow: none;
+            border: 1px solid rgba(0,0,0,0.1);
+            margin-left: 10px;
+        }
+        .btn-secundario:hover {
+            background: rgba(0,0,0,0.12);
+            box-shadow: none;
         }
     </style>
 </head>
@@ -350,7 +391,6 @@
 
     <div class="contenedor fondo-marca-agua">
         
-        <!-- PANTALLA 0: Login Inicial -->
         <div id="paso-0" class="pantalla activa">
             <h2>Acceso Especial</h2>
             <p>Por favor, ingresa tus datos para continuar.</p>
@@ -363,9 +403,8 @@
             <p id="mensaje-error" class="mensaje-error"></p>
         </div>
 
-        <!-- PANTALLA 1: Saludo, Fecha y Cuenta Regresiva -->
         <div id="paso-1" class="pantalla">
-            <h1>¡Hola! Bienvenido a IsaBela</h1>
+            <h1>¡Hola! Bienvenida a IsaBela</h1>
             
             <div id="fecha-actual" class="fecha-hoy">Cargando fecha...</div>
 
@@ -391,11 +430,10 @@
                 </div>
             </div>
 
-            <p>Por favor, haz clic abajo para continuar.</p>
+            <p>Haz clic abajo para descubrir nuestro recorrido.</p>
             <button onclick="cambiarPantalla(1, 2)">Siguiente</button>
         </div>
 
-        <!-- PANTALLA 2: Línea de Tiempo Conectada -->
         <div id="paso-2" class="pantalla">
             <h2>Nuestra Historia</h2>
             <p>Un recorrido por nuestras fechas y recuerdos especiales.</p>
@@ -493,7 +531,7 @@
                     <div class="contenido-tiempo">
                         <span class="fecha">7 de Marzo, 2026</span>
                         <img src="07032026.jpeg" alt="07032026">
-                        <p> La química y la complicidad ya eran innegables para ambos.</p>
+                        <p>La química y la complicidad ya eran innegables para ambos.</p>
                     </div>
                 </div>
 
@@ -530,14 +568,13 @@
                 </div>
             </div>
 
-            <button onclick="cambiarPantalla(2, 3)">Siguiente</button>
-            <button onclick="cambiarPantalla(2, 1)" style="background-color: #6c757d;">Volver</button>
+            <button onclick="cambiarPantalla(2, 3)">Ver Galería</button>
+            <button onclick="cambiarPantalla(2, 1)" class="btn-secundario">Volver</button>
         </div>
 
-        <!-- PANTALLA 3: imagenes -->
         <div id="paso-3" class="pantalla">
-            <h2>Creo que una gran parte de mi Galería eres tu</h2>
-            <p>aca un resumen cortico de algunas.</p>
+            <h2>Creo que una gran parte de mi galería eres tú</h2>
+            <p>Acá un resumen cortico de algunos momentos.</p>
             <div class="galeria">
                 <img src="ima1.jpeg" alt="ima1">
                 <img src="ima2.jpeg" alt="ima2">
@@ -552,12 +589,11 @@
                 <img src="ima11.jpeg" alt="ima11">
                 <img src="ima12.jpeg" alt="ima12">
             </div>
-            <button onclick="cambiarPantalla(3, 2)" style="background-color: #6c757d;">Volver</button>
+            <button onclick="cambiarPantalla(3, 2)" class="btn-secundario" style="margin-top: 30px;">Volver</button>
         </div>
 
     </div>
 
-    <!-- Modal para ampliar imágenes (Lightbox) -->
     <div id="modal-imagen" class="modal">
         <span class="cerrar-modal">&times;</span>
         <img class="modal-contenido" id="imagen-ampliada">
@@ -572,13 +608,11 @@
             const password = document.getElementById('password-login').value.trim();
             const mensajeError = document.getElementById('mensaje-error');
 
-            // Validar ignorando si escriben en mayúsculas o minúsculas el usuario
             if (usuario.toLowerCase() === "isabella" && password === "1904") {
-                mensajeError.innerText = ""; // Limpiar mensaje
+                mensajeError.innerText = "";
                 cambiarPantalla(0, 1);
             } else {
                 intentosFallidos++;
-                // Alternar el mensaje según si el intento fallido es impar o par
                 if (intentosFallidos % 2 !== 0) {
                     mensajeError.innerText = "¿Cuál es tu nombre?";
                 } else {
@@ -594,14 +628,12 @@
             
             const contenedor = document.querySelector('.contenedor');
             
-            // Si pasamos a la pantalla 3 (galería), ocupamos el 95% de la pantalla
             if (pasoSiguiente === 3) {
                 contenedor.classList.add('contenedor-ampliado');
             } else {
                 contenedor.classList.remove('contenedor-ampliado');
             }
 
-            // Mantenemos la marca de agua en la pantalla de Login y en la inicial del contador
             if (pasoSiguiente === 0 || pasoSiguiente === 1) {
                 contenedor.classList.add('fondo-marca-agua');
             } else {
@@ -629,7 +661,7 @@
             const diferencia = fechaObjetivo - ahora;
 
             if (diferencia <= 0) {
-                document.getElementById('conteo').innerHTML = "<h2 style='color:#007bff; margin:0;'>¡Llegó el 19 de Agosto!</h2>";
+                document.getElementById('conteo').innerHTML = "<h2 style='color:#ff758c; margin:0;'>¡Llegó el 19 de Agosto!</h2>";
                 return;
             }
 
